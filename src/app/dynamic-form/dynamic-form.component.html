@@ -1,0 +1,39 @@
+<div [formGroup]="form">
+    @for (row of appFormControl.rows; track $index) {
+        <div [ngClass]="row.class">
+            @for(column of row.columns; track $index){
+                <div [ngClass]="column.class">
+                    <mat-label>{{column.control.label}}</mat-label>
+                    @switch (column.control.controlType) {
+                        @case ('textbox') {
+                            <mat-form-field class="">
+                                <input matInput [formControlName]="column.control.id" [id]="column.control.id"
+                                    [type]="column.control.type" [placeholder]="column.control.label">
+                                <mat-error>
+                                    {{column.control.label}} is Required.
+                                </mat-error>
+                            </mat-form-field>
+                            }
+                        @case ('dropdown') { 
+                            <mat-form-field class="">
+                                <mat-select [formControlName]="column.control.id" [id]="column.control.id">
+                                    @for(obj of column.control.options; track $index){
+                                    <mat-option [value]="obj.key">
+                                        {{obj.value}}
+                                    </mat-option>
+                                }
+                                </mat-select>
+                                <mat-error>
+                                    {{column.control.label}} is Required
+                                </mat-error>
+                            </mat-form-field> 
+                        }
+                        @default { 
+                            <p>Unknown Control.</p>
+                        }
+                    }
+                </div>
+            }
+        </div>
+    }
+</div>
