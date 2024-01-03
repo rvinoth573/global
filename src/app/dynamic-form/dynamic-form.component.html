@@ -7,8 +7,8 @@
                     @switch (column.control.controlType) {
                         @case ('textbox') {
                             <mat-form-field class="">
-                                <input matInput [formControlName]="column.control.id" [id]="column.control.id"
-                                    [type]="column.control.type" [placeholder]="column.control.label">
+                                <input matInput (keypress)="keyPress($event, column.control.validators)" [formControlName]="column.control.id" [id]="column.control.id"
+                                    [type]="column.control.type" [placeholder]="column.control.label" [disabled]="column.control.disabled">
                                 <mat-error>
                                     {{column.control.label}} is Required.
                                 </mat-error>
@@ -16,7 +16,7 @@
                             }
                         @case ('dropdown') { 
                             <mat-form-field class="">
-                                <mat-select [formControlName]="column.control.id" [id]="column.control.id">
+                                <mat-select [formControlName]="column.control.id" [id]="column.control.id" [disabled]="column.control.disabled">
                                     @for(obj of column.control.options; track $index){
                                     <mat-option [value]="obj.key">
                                         {{obj.value}}
@@ -27,6 +27,20 @@
                                     {{column.control.label}} is Required
                                 </mat-error>
                             </mat-form-field> 
+                        }
+                        @case ('datepicker') { 
+                            <mat-form-field class="">
+                                <input matInput [disabled]="column.control.disabled" [formControlName]="column.control.id" [id]="column.control.id" [matDatepicker]="picker">
+                                <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+                                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                                <mat-error>
+                                    {{column.control.label}} is Required
+                                </mat-error>
+                            </mat-form-field>
+                        }
+                        @case ('checkbox') {
+                            <mat-checkbox [formControlName]="column.control.id" [id]="column.control.id" [disabled]="column.control.disabled"></mat-checkbox>
                         }
                         @default { 
                             <p>Unknown Control.</p>

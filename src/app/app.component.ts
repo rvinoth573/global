@@ -44,7 +44,22 @@ export class AppComponent {
                 controlType:'textbox',
                 disabled: false,
                 value:'',
-                validators:{required: true, attributes:{}},
+                validators:{required: true, attributes:{}, pattern:'alphanumeric'},
+                options: [],
+                selected:'',
+              }
+            },
+            {
+              class:[''],
+              control: {
+                id: 'lastName',
+                label: 'Last Name',
+                class: [],
+                type: 'text',
+                controlType:'textbox',
+                disabled: false,
+                value:'',
+                validators:{required: true, attributes:{}, pattern:'alphanumeric'},
                 options: [],
                 selected:'',
               }
@@ -72,14 +87,29 @@ export class AppComponent {
             {
               class:[''],
               control: {
-                id: 'lastName',
-                label: 'Last Name',
+                id: 'numbers',
+                label: 'Numbers',
                 class: [],
                 type: 'text',
                 controlType:'textbox',
                 disabled: false,
                 value:'',
-                validators:{required: true, attributes:{}},
+                validators:{required: true, attributes:{}, pattern:'numbers'},
+                options: [],
+                selected:'',
+              }
+            },
+            {
+              class:[''],
+              control: {
+                id: 'decimal',
+                label: 'Decimal',
+                class: [],
+                type: 'text',
+                controlType:'textbox',
+                disabled: false,
+                value:'',
+                validators:{required: true, attributes:{}, pattern:'decimal'},
                 options: [],
                 selected:'',
               }
@@ -97,6 +127,36 @@ export class AppComponent {
                 validators:{required: false, attributes:{}},
                 options: this.dataSource,
                 selected:'3',
+              }
+            },
+            {
+              class:[],
+              control: {
+                id: 'date',
+                label: 'Choose a Date',
+                class: [],
+                type: '',
+                controlType:'datepicker',
+                disabled: false,
+                value:'',
+                validators:{required: true, attributes:{}},
+                options: [],
+                selected:'',
+              }
+            },
+            {
+              class:[],
+              control: {
+                id: 'checkbox',
+                label: 'Check me!',
+                class: [],
+                type: '',
+                controlType:'checkbox',
+                disabled: false,
+                value:'',
+                validators:{required: false, attributes:{}},
+                options: [],
+                selected:'',
               }
             }
           ],

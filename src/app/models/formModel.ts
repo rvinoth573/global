@@ -27,4 +27,5 @@ export interface AppFormControl{
   export interface Validator{
     required: boolean;
     attributes: {};
+    pattern?: string;
   }
